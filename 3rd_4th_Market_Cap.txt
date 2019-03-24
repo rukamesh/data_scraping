@@ -1,0 +1,9 @@
+SELECT Company, Market_Cap, Sector
+FROM(
+  SELECT *, ROW_NUMBER()OVER(PARTITION BY Sector ORDER BY Market_Cap DESC) rn
+    FROM STOCKSDATA
+)
+WHERE rn IN (3, 4);
+
+
+
